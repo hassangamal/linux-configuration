@@ -167,9 +167,15 @@ sudo apache2ctl restart
 ```
 ## References
 - [Ask Ubuntu](http://askubuntu.com/)
+
 - [PosgreSQL Docs](https://www.postgresql.org/docs/9.5/static/index.html)
+
 - [Apache Docs](https://httpd.apache.org/docs/2.4/)
+
 -https://github.com/chuanqin3/udacity-linux-configuration
+
 -https://github.com/basmaashouur/full-stack-udacity
+
 -https://github.com/hima-Megahed/Linux-Server-Configuration
+
 -https://github.com/mulligan121/Udacity-Linux-Configuration
