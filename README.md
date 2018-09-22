@@ -95,14 +95,14 @@ sudo pip install flask-seasurf
 
 ```
 cd /var/www
-sudo mkdir project4
-sudo chown -R grader:grader project4
-cd project4
-sudo git clone https://github.com/basmaashouur/project4.git project4
+sudo mkdir catalog
+sudo chown -R grader:grader catalog
+cd catalog
+sudo git clone https://github.com/hassangamal/ItemCatalog catalog
 ```
 
 ## Configure the Catalog app
-- Change `app.py` to `__init__.py`
+- Change `project.py` to `__init__.py`
 -  Provide the full path (or location) to all the files, instead of just the filename
 
 ## Configure Google OAuth
@@ -111,20 +111,20 @@ sudo git clone https://github.com/basmaashouur/project4.git project4
 
 ## Configure the web application to connect to the PostgreSQL database instead of a SQLite database
  ```
- sudo nano /var/www/project4/project4/app.py
- -Change the DATABASE_URI setting in the file from 'sqlite:///catalogitems.db' to 'postgresql://catalog:catalog@localhost/catalog', and save
+ sudo nano /var/www/catalog/catalog/__init__.py
+ -Change the DATABASE_URI setting in the file from 'sqlite:///Catalog_db.db' to 'postgresql://catalog:catalog@localhost/catalog', and save
 ``` 
 
 ## Configure the Database to connect to the PostgreSQL database instead of a SQLite database
   ```
- sudo nano /var/www/project4/project4/dbsetup.py
- -Change the DATABASE_URI setting in the file from 'sqlite:///catalogitems.db' to 'postgresql://catalog:catalog@localhost/catalog', and save
+ sudo nano /var/www/catalog/catalog/dataabse_input.py
+ -Change the DATABASE_URI setting in the file from 'sqlite:///Catalog_db.db' to 'postgresql://catalog:catalog@localhost/catalog', and save
  ```
  
  ## Configure Apache to serve the web application using WSGI
 - Create the web application WSGI file.
  ```
-sudo nano /var/www/project4/app.wsgi
+sudo nano /var/www/catalog/app.wsgi
 ```
 - Add the following lines to the file, and save the file.
 ```
@@ -132,7 +132,7 @@ sudo nano /var/www/project4/app.wsgi
 import sys 
 import logging
 logging.basicConfig(stream=sys.stderr)
-sys.path.insert(0,"/var/www/project4/")
+sys.path.insert(0,"/var/www/catalog/")
 from project4 import app as application
 application.secret_key = 'super_secret_key'
 
@@ -143,15 +143,15 @@ sudo nano /etc/apache2/sites-enabled/000-default.conf
 ```
 - Add the following line inside the `<VirtualHost *:80>` element, and save the file.
 ```
-        ServerName 35.178.34.134
-	ServerAdmin basmaashouu@gmail.com
-	WSGIScriptAlias / /var/www/project4/app.wsgi
-	<Directory /var/www/project4/project4>
+        ServerName 18.184.74.60
+	ServerAdmin admin@18.184.74.60
+	WSGIScriptAlias / /var/www/catalog/app.wsgi
+	<Directory /var/www/catalog/catalog>
 		Order allow,deny
 		Allow from all
 	</Directory>
-	Alias /static /var/www//project4/project4/static
-	<Directory /var/www/project4/project4/static/>
+	Alias /static /var/www//catalog/catalog/static
+	<Directory /var/www/catalog/catalog/static/>
 		Order allow,deny
 		Allow from all
 	</Directory>
